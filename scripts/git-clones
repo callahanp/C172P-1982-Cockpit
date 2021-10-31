@@ -1,0 +1,23 @@
+#!/bin/bash
+declare -A clones
+clones["C172P-1982-Cockpit"]="git@github.com:callahanp/C172P-1982-Cockpit.git"
+clones["dotSCAD"]="git@github.com:JustinSDK/dotSCAD.git"
+clones["NopSCADlib"]="git@github.com:nophead/NopSCADlib.git"
+echo ${!clones[@]}
+for clone in "${!clones[@]}"
+do
+  if [ -e $clone ]
+  then
+  	echo "$clone clone - updating"
+  	cd $clone
+	git branch
+  	git pull
+  	cd - > /dev/null
+  else 
+  	echo cloning ${clones[$clone]} into $clone
+  	git clone ${clones[$clone]}
+  	cd $clone
+	git branch
+	cd - > /dev/null
+  fi
+done

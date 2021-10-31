@@ -6,8 +6,8 @@ I am an amateur and am fully open to different approaches to the kind of problem
 ## Current Drawings:
 
 * Lower Panel (Prototype version)
-* Left Side Instrument Panel (Prototype version)
-
+* Pilot Side Instrument Panel 
+* 
 OpenSCAD designs for gauges, instruments, radios, controls and cockpit structures are are needed:
 
 * Suction Gauge
@@ -38,6 +38,7 @@ OpenSCAD designs for gauges, instruments, radios, controls and cockpit structure
 * Throttle
 * Carb Heat
 * Mixture
+* Flaps
 * Panel and Radio Lighting
 * Cabin Light
 * Outside Air Temp
@@ -77,6 +78,8 @@ I"m taking a close look at https://github.com/nophead/NopSCADlib for ideas about
 
 A list of OpenSCAD libraries in use in the project:
 * threads.scad 
+* https://github.com/JustinSDK/dotSCAD.git
 * spline.scad
-* https://github.com/nophead/NopSCADlib 
+* https://github.com/nophead/NopSCADlib
+
 
