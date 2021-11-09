@@ -1,93 +1,82 @@
+//
+// CockpitSCADlib Copyright Patrick A. Callahan 2021
+// Framingham, Ma U.S.A.
+
+// This file is part of CockpitSCADlib.
+//
+// CockpitSCADlib is free software: you can redistribute it and/or modify it under the terms of the
+// GNU General Public License as published by the Free Software Foundation, either version 3 of
+// the License, or (at your option) any later version.
+//
+// CockpitSCADlib is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+// without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along with CockpitSCADlib.
+// If not, see <https://www.gnu.org/licenses/>.
+//
 use <bezier_curve.scad>;
+/* Panels are used in Aircraft Instrument Panels and individual radios.
+// They are mounted on the Aircraft Console, or to radio enclosures.
+// Radio enclosures are mounted to an area of the console called the 
+// Radio Stack.
+
+// A panel starts as a rectangular flat plate.
+
+// Remove Corners and edge curves and place
+// circular and rectangular shapes to be remove
+// the needed holes for the various instruments, 
+// gauges, controls, switches and displays.
+*/
+use <../utils/core/core.scad>
+use <../utils/dies/circle_die.scad>
+use <../utils/dies/slot_die.scad>
+use <../utils/dies/rounded_rectangle_die.scad>
+use <../utils/dies/round_corner_die.scad>
+use <../utils/dies/instrument_die.scad>
+use <../utils/dies/bezier_triangle_die.scad>
+
+
+function panel_width(type)= type[0][2][0];
+
 module panel_differences(panel_difference_list,panel_thickness) {
-  eps=1/128;
-for (item=panel_difference_list){
-      echo (item[0],item[1]);
+for (item = panel_difference_list){
+     echo (item);
       operation=item[1];
       spec=item[2];
       
-      if (operation == "Circle") {
-
-        translate([spec[0],spec[1], -eps]) cylinder(h=panel_thickness+2*eps, d=spec[2],$fn=100 );
+      if (operation == "Corner Cut") {
+        round_corner_die (corner_position=spec[0], radius=spec[1], height=spec[2], angle=spec[3]);
       }
       if (operation == "Round") {
-        translate(spec[0]) cylinder(h=spec[2]+2*eps, d=spec[1],$fn=100 );
+        circle_die(position=spec[0], diameter=spec[1], height=spec[2]);
+      }
+      if (operation == "Slot") {
+        echo(spec);
+        slot_die(position=spec[0], width=spec[1], length=spec[2], height=spec[3],
+                 round_top=spec[4]==1?true:false, round_bottom=spec[5]==1?true:false, flare_bottom =spec[6]);
       }
       if (operation == "Instrument") {
-        echo(spec);
-        let( 
-          position=spec[0],
-          size=spec[1],
-          dia=spec[2],
-          mount_centers=spec[3],
-          adjusters=spec[4],
-          mounts=spec[5],
-          mount_dia=spec[6],
-          mount_position_radius=spec[3]/2,
-          adjust_dia=spec[7],
-          panel_thickness=spec[8]){
-          echo(mount_position_radius);
-          echo(adjust_dia);
-          echo(mount_position_radius-(adjust_dia/2));
-          translate(position) cylinder(h=panel_thickness+2*eps, d=dia,$fn=100 );
-          for (angle_a=adjusters) {
-            let ( x=mount_position_radius*sin(angle_a), y=mount_position_radius*cos(angle_a),
-                  x1=(mount_position_radius-(adjust_dia/4))*sin(angle_a),
-                  y1=(mount_position_radius-(adjust_dia/4))*cos(angle_a)) {
-              echo (angle_a, x,y,x1,y1);
-              translate(position+[x,y,0]) cylinder(h=panel_thickness+2*eps, d=adjust_dia, $fn=50);
-              translate(position+[x1,y1,panel_thickness-2*eps]) rotate([0,0,angle_a]) cube([adjust_dia, adjust_dia,panel_thickness+3*eps],center=true);
-            }
-            }
-          for (angle_m=mounts) { 
-            let ( x=mount_position_radius*sin(angle_m), y=mount_position_radius*cos(angle_m)){
 
-              translate(position+[x,y,0]) cylinder(h=panel_thickness+2*eps, d=mount_dia, $fn=50);
-            }
-          }
-          }
-      }
-      if (operation == "Rectangle") {
-        echo(spec);
-        translate([spec[0],spec[1], -eps]) cube([spec[2],spec[3], panel_thickness+2*eps] );
+        instrument_die(position=spec[0], size=spec[1],  thickness=spec[2], mounting_slots=spec[3], adjuster_slots=spec[4]);
       }
       if (operation =="Rounded Rectangle") {
-        echo(spec);
-        translate([spec[0],spec[1], -eps]) cube([spec[2],spec[3], panel_thickness+2*eps] );
-      }
-      if (operation == "Corner Cut") {
-        echo(spec);
-        radiuscc=spec[0];
-        cube_pos=spec[1];
-        cyl_pos=spec[2];
-        epsilon=spec[3];
-        translate(epsilon) 
-        difference(){
-          translate(cube_pos) cube([radiuscc+eps,radiuscc+eps,panel_thickness+2*eps]);
-          translate(cyl_pos) cylinder(r=radiuscc, h=panel_thickness+2*eps, $fn=100);
-        }
+         echo(spec);
+         rounded_rectangle_die ( position=spec[0], width=spec[1], length=spec[2], thickness=spec[3], radius=spec[4]);
       }
       if (operation == "Bezier Edge"){
-        echo(spec);
-        bpath=spec[0];
-        shape_completion=spec[1];
-        tStep=spec[2];
-        pathb=bezier_curve(tStep, bpath);
-        translate([0,0,-eps])
-          linear_extrude (height=panel_thickness+2*eps)polygon(concat(pathb,shape_completion));
+      //  echo(spec);
+        bezier_triangle_die(position=spec[0], xyPath=spec[1], tStep=spec[2], path_closure=spec[3], height=spec[4]);
       }
     }
 }
 module panel(panel_spec){
   panel_outline=panel_spec[0];
   panel_difference_list=panel_spec[1];
-  echo (panel_outline);
-  echo (panel_spec);
   panel_cube=panel_outline[2];
-  echo (panel_cube);
   panel_thickness=panel_cube[2];
   difference() {
     cube(panel_outline[2]);
     panel_differences(panel_difference_list,panel_thickness);
   }
-  }
+}
