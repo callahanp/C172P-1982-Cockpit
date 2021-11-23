@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/inner_prisms.scad>
+
+module inner_prisms()
+    layout([for(spec = inner_prisms) inner_prism_overall_size(spec).x],  1) let(spec = inner_prisms[$i])
+        inner_prism(spec);
+
+if($preview){
+    inner_prisms();}

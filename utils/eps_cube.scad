@@ -15,19 +15,33 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-include <../../utils/core/core.scad>
-include <../../utils/layout.scad>
 
-
-include <../../vitamins/airspeed_indicators.scad>
-
-module airspeed_indicators(){
-
-    layout([for(airspeed_indicator = airspeed_indicators) airspeed_indicator_width(airspeed_indicator)], 3)
-      let (s=airspeed_indicator[$i]) {
- 
-        airspeed_indicator(s);
-      }
+include <core/core.scad>
+module eps_cube( 
+               cube_spec_size=[0,0,0], 
+               eps_size=[0,0,0],
+               round_xy_radius=0,
+               $fn=$fn) {
+cube_size=cube_spec_size+eps_size;
+if ( round_xy_radius==0 )
+  cube(cube_size);
+else
+  let ( r=round_xy_radius,
+        height=cube_size[2],
+        width = cube_size[0],
+        length = cube_size[1]){
+    translate([0,r,0])
+      cube(cube_size+[0,-r*2,0]);
+    translate([r,0,0])
+      cube(cube_size+[-r*2,0,0]);
+    translate([r,r,0])
+      cylinder(r=r, h=height, $fn=$fn);
+    translate([width-r,r,0])
+      cylinder(r=r, h=height, $fn=$fn);
+    translate([r,length-r,0])
+      cylinder(r=r, h=height, $fn=$fn);
+    translate([width-r,length-r,0])
+      cylinder(r=r, h=height, $fn=$fn);
+  }
 }
-if($preview)
-    airspeed_indicators();
+

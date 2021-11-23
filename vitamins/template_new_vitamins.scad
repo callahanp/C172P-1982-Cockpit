@@ -15,6 +15,13 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+include <../utils/core/core.scad>
+
+include <new_vitamin_template.scad>
+// TO_DO: Update with parts representing actual new_vitamins
+//                       Manufacturer  Model            Part Number    Description  Bounding Cube  spec
+new_vitamin_123 =     ["1-2-3 Block", [1,2,3], 3, [1,2,3]];
+new_vitamin_10_10_10 = ["10 cube" , [10,10,10], 10, [10,10,10]];
+// TO_DO: Update new_vitamins list with new parts defined above
+new_vitamins = [new_vitamin_123, new_vitamin_123,];

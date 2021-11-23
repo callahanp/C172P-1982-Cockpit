@@ -15,19 +15,24 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-include <../../utils/core/core.scad>
-include <../../utils/layout.scad>
 
+function electronics_plate_description(spec) = spec[0];
+function electronics_plate_overall_size(spec) = spec[1];
+function electronics_plate_nominal_size(spec) = spec[2]; 
+// TODO: Create new accessor functions for additional electronics_plate specs
+function electronics_plate_overall_size(spec) = spec[3];
 
-include <../../vitamins/airspeed_indicators.scad>
+function electronics_plate_constructor (
+  description, 
+  overall_size, nominal_size,
+  other_specifications) = 
+    [description, 
+    overall_size, nominal_size,
+    other_specifications];
+// TODO: Replace electronics_plate_constructor "other_specifcations" with 
+//        real parameters for electronics_plates
+module electronics_plate (spec){
+// TODO: Replace cube construct with electronics_plate part construction
+cube(electronics_plate_overall_size(spec));
 
-module airspeed_indicators(){
-
-    layout([for(airspeed_indicator = airspeed_indicators) airspeed_indicator_width(airspeed_indicator)], 3)
-      let (s=airspeed_indicator[$i]) {
- 
-        airspeed_indicator(s);
-      }
 }
-if($preview)
-    airspeed_indicators();

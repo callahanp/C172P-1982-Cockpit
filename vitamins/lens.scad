@@ -15,6 +15,24 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+function lens_description(spec) = spec[0];
+function lens_overall_size(spec) = spec[1];
+function lens_nominal_size(spec) = spec[2]; 
+function lens_dia(spec) = spec[3][0];
+function lens_thickness(spec) = spec[3][1];
+
+function lens_constructor (
+  description, 
+  overall_size, nominal_size,
+  other_specifications) = 
+    [description, 
+    overall_size, nominal_size,
+    lens_spec];
+
+module lens (spec){
+echo("lens_dia",lens_dia(spec));
+echo("lens_thickness",lens_thickness(spec));
+
+%cylinder(d=lens_dia(spec), h=lens_thickness(spec));
+
+}

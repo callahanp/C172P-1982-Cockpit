@@ -15,6 +15,23 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+function face_plate_description(spec) = spec[0];
+function face_plate_overall_size(spec) = spec[1];
+function face_plate_nominal_size(spec) = spec[2]; 
+// TODO: Create new accessor functions for additional face_plate specs
+function face_plate_overall_size(spec) = spec[3];
+
+function face_plate_constructor (
+  description, 
+  overall_size, nominal_size,
+  other_specifications) = 
+    [description, 
+    overall_size, nominal_size,
+    other_specifications];
+// TODO: Replace face_plate_constructor "other_specifcations" with 
+//        real parameters for face_plates
+module face_plate (spec){
+// TODO: Replace cube construct with face_plate part construction
+cube(face_plate_overall_size(spec));
+
+}

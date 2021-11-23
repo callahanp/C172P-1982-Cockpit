@@ -28,45 +28,83 @@ use <bezier_curve.scad>;
 // the needed holes for the various instruments, 
 // gauges, controls, switches and displays.
 */
-use <../utils/core/core.scad>
-use <../utils/dies/circle_die.scad>
-use <../utils/dies/slot_die.scad>
-use <../utils/dies/rounded_rectangle_die.scad>
-use <../utils/dies/round_corner_die.scad>
-use <../utils/dies/instrument_die.scad>
-use <../utils/dies/bezier_triangle_die.scad>
+include <../utils/core/core.scad>
+
+use <../utils/eps_cylinder.scad>
+use <../utils/move.scad>
+use <../utils/eps_slot.scad>
+use <../utils/eps_cube.scad>
+use <../utils/eps_corner_cut.scad>
+use <../utils/eps_triangle_curved_hypotenuse.scad>
 
 
 function panel_width(type)= type[0][2][0];
+module instrument_slot ( size, thickness, angles, slot_width, center_distance, flare_radius) {
+  chord_length=slot_width+2*flare_radius;
+  for (a=angles) {
+    let (x=sin(a)*(sqrt((size/2)^2-(chord_length/2)^2)),
+          y=cos(a)*(sqrt((size/2)^2-(chord_length/2)^2)),
+          slot_length=slot_width/2+((center_distance-size)/2)
+                    +(size/2-sqrt((size/2)^2-(slot_width+2*flare_radius)^2))/4){
+        move(position=[x,y,0], rotation=[0,0,-a]) 
+        eps_slot(slot_width, slot_length, thickness, round_top=true, flare_bottom=flare_radius);
+    }
+  }
+}  
+
+//use <../../utils/dies/instrument_die.scad>
+// slot(width, length, height, round_top=false, round_bottom=false, flare_bottom =0, $fn=100)
+// slot_specs: [[angles],slot_width, center_distance, flare_radius]
+//                [x,y,z]    3.125 panel_thickness
+//                           2.25               [slot_specs]            [slot_specs]
+//                           1                
+module instrument_opening( size,  thickness, mounting_slots=[], adjuster_slots=[], $fn=$fn ){
+  
+  instrument_slot(size=size, thickness=thickness+4*eps, angles=mounting_slots[0], 
+      slot_width=mounting_slots[1], 
+      center_distance=mounting_slots[2], 
+       flare_radius=mounting_slots[3]);
+  
+  instrument_slot(size=size,thickness=thickness+4*eps,angles=adjuster_slots[0], 
+      slot_width=adjuster_slots[1], 
+      center_distance=adjuster_slots[2], 
+       flare_radius=adjuster_slots[3]);
+  cylinder(d=size, h=thickness+4*eps, $fn=$fn);
+}
 
 module panel_differences(panel_difference_list,panel_thickness) {
 for (item = panel_difference_list){
      echo (item);
       operation=item[1];
       spec=item[2];
-      
+      eps_z = [0,0,-eps];
       if (operation == "Corner Cut") {
-        round_corner_die (corner_position=spec[0], radius=spec[1], height=spec[2], angle=spec[3]);
+        move(position=spec[0],eps_position=[0,0,-eps]) 
+        eps_corner_cut ( eps_corner_cut_constructor(radius=spec[1], height=spec[2]+2*eps, angle=spec[3]));
       }
       if (operation == "Round") {
-        circle_die(position=spec[0], diameter=spec[1], height=spec[2]);
+        move(position=spec[0],eps_position=[0,0,-eps])  eps_cylinder( diameter=spec[1], height=spec[2], eps_size=[0,0,2*eps]);
       }
       if (operation == "Slot") {
         echo(spec);
-        slot_die(position=spec[0], width=spec[1], length=spec[2], height=spec[3],
+        move(spec[0],eps_position=eps_z)
+        eps_slot(width=spec[1], length=spec[2], height=spec[3]+2*eps,
                  round_top=spec[4]==1?true:false, round_bottom=spec[5]==1?true:false, flare_bottom =spec[6]);
       }
       if (operation == "Instrument") {
 
-        instrument_die(position=spec[0], size=spec[1],  thickness=spec[2], mounting_slots=spec[3], adjuster_slots=spec[4]);
+        move(spec[0],eps_z) instrument_opening( size=spec[1],  thickness=spec[2], mounting_slots=spec[3], adjuster_slots=spec[4]);
       }
       if (operation =="Rounded Rectangle") {
          echo(spec);
-         rounded_rectangle_die ( position=spec[0], width=spec[1], length=spec[2], thickness=spec[3], radius=spec[4]);
+         move(spec[0],[-spec[1]/2,-spec[2]/2,-eps])
+         eps_cube ( [spec[1], spec[2],spec[3]], eps_size=[0,0,2*eps], round_xy_radius=spec[4]);
       }
       if (operation == "Bezier Edge"){
       //  echo(spec);
-        bezier_triangle_die(position=spec[0], xyPath=spec[1], tStep=spec[2], path_closure=spec[3], height=spec[4]);
+       move(spec[0], eps_position=[0,0,-eps]) 
+        eps_triangle_curved_hypotenuse( xyPath=spec[1], tStep=spec[2], path_closure=spec[3], height=spec[4],
+                  eps_size=[0,0,2*eps]);
       }
     }
 }

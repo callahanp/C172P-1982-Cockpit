@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/face_plates.scad>
+
+module face_plates()
+    layout([for(spec = face_plates) face_plate_overall_size(spec).x],  1) let(spec = face_plates[$i])
+        face_plate(spec);
+
+if($preview){
+    face_plates();}

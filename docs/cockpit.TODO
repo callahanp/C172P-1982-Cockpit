@@ -1,0 +1,25 @@
+# Master TODO list:
+## Convert Panel and bezel to use eps utilities:
+  ### Find all "_die" calls and mark as TODO:  
+  ### Replace slot_die eps_slot:
+  ### replace circle_die with eps_cylinder:
+  ### replace rounded_rectangle_die with eps_cube:
+  ### investigate instrument_die usage move to instruments:
+## Convert Bezels to have constructors for all features:
+## convert case.scad to have constructors for all features:
+## Add instruments.scad start with airspeed indicator:
+## Add radios.scad:
+## add flaps.scad:
+## add breakers.scad:
+## add meters.scad:
+## add gauges.scad:
+## add lower_panel.scad:
+## add altimeter_gears.scad:
+## add clock_gears.scad:
+## add gear_plates.scad:
+## add motor_plate.scad:
+## add electronics_plate.scad:
+## add needles.scad:
+## review: *.prisms, dials, dial plates:
+## add Motors.scad:
+## review template_new_vitamins:

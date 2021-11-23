@@ -15,6 +15,13 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+module move(position=[0,0,0], 
+            eps_position=[0,0,0],
+            radial=[0,0,0],
+            rotation=[0,0,0]) {
+  radial_position=([sin(radial[0])*radial[1],cos(radial[0])*radial[1],radial[2]]);
+  translate(position+eps_position+radial_position)
+    rotate(rotation)
+      children();
+}
+move(position=[1,1,1],eps_position=[1,1,1],rotation=[45,45,45],radial=[30,20,-2]) cube([1,2,3]);

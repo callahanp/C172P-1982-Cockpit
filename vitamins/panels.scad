@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-use <panel.scad>
+include <panel.scad>
 include <../utils/core/core.scad>
 
 upper_right=45;
@@ -63,7 +63,7 @@ pt=panel_thickness;
 //      Description             Operation      Measures
 C172P_1982_Pilot_panel=
   [ ["Overall Measurement", "Height & Width", [w, h, panel_thickness]],  
-  //                                    position, radius, height, angle 
+  //                                      position, radius, height, angle 
     [ ["Lower Left Corner", "Corner Cut",[[0,0,0],corner_radius, pt, lower_left]],
       ["Lower Right Corner","Corner Cut",[[w,0,0],corner_radius, pt, lower_right]],
       ["Upper Right Corner","Corner Cut",[[w,h,0],corner_radius, pt, upper_right]],
@@ -95,7 +95,7 @@ C172P_1982_Pilot_panel=
       ["Vertical Speed","Instrument",   [[c3,r2, 0], 3.125, pt,   four_mounts,  no_adjusters]],
       ["CDI2","Instrument",             [[c4,r2, 0], 3.125, pt,   three_mounts, one_adjuster]],
       ["Tachometer","Instrument",       [[c1,r3, 0], 3.125, pt,   four_mounts,  no_adjusters]],
-      ["EGT","Instrument",              [[c3,r3, 0], 2.25, pt,    four_mounts_225,  no_adjusters]],
+      ["EGT","Instrument",              [[c3,r3, 0], 2.25,  pt,   four_mounts_225,  no_adjusters]],
       ["ADF","Instrument",              [[c4,r3, 0], 3.125, pt,   three_mounts, one_adjuster]],  
       ["Upper Left Curve", "Bezier Edge", 
        [[0,0,0],

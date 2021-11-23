@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+// mounting_holes_constructor.scad
+mounting_holes_constructor(
+  diameter,
+  positions)=[diameter,positions];
+)

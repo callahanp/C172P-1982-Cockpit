@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/motors.scad>
+
+module motors()
+    layout([for(spec = motors) motor_overall_size(spec).x],  1) let(spec = motors[$i])
+        motor(spec);
+
+if($preview){
+    motors();}

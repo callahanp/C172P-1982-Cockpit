@@ -15,6 +15,13 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+include <../utils/core/core.scad>
+
+include <lens_gasket.scad>
+//                       Manufacturer  Model            Part Number    Description  Bounding Cube  spec
+lens_gasket_3_inch =     ["3 inch Lens Gasket", 
+                          [3,3,.1], 3, [3.0,2.85,.1/64]];
+lens_gasket_2_inch =     ["2 inch Lens Gasket", 
+                          [2,2,.1], 2, [2.0,1.85,.1/64]];
+lens_gaskets = [lens_gasket_3_inch, lens_gasket_2_inch];

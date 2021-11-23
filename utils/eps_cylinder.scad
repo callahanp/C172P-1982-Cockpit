@@ -15,6 +15,16 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <core/core.scad>
+module eps_cylinder( 
+               diameter, height, 
+               eps_size=[0,0,0],
+               $fn=$fn) {
+    cylinder(d=diameter 
+              + eps_size[0] + eps_size[1], 
+             h=height+2*eps_size[2], 
+             $fn=$fn);
+
+  // its a circle so rotation doesn't matter much.
+}
+

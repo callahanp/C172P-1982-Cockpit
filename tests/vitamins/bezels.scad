@@ -1,4 +1,4 @@
-//
+ //
 // CockpitSCADlib Copyright Patrick A. Callahan 2021
 // Framingham, Ma U.S.A.
 
@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/bezels.scad>
+
+module bezels()
+    layout([for(spec = bezels) bezel_overall_size(spec).x],  1) let(spec = bezels[$i])
+        bezel(spec);
+
+if($preview){
+    bezels();}

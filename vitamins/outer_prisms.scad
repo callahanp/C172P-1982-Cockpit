@@ -15,6 +15,18 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+include <../utils/core/core.scad>
+
+include <outer_prism.scad>
+outer_prism_3_inch =  outer_prism_constructor(
+                        "3 inch outer prism", 
+                        [3, 3, 23/128], 3.0, 
+                        min_thickness=1/32,
+                        alignment_semicircle_dia=7/64);
+outer_prism_2_inch =  outer_prism_constructor(
+                "2 inch outer prism", 
+                        [2, 2, 23/128], 2.0, 
+                        min_thickness=1/32,
+                        alignment_semicircle_dia=7/64);
+outer_prisms = [outer_prism_2_inch, outer_prism_3_inch ];

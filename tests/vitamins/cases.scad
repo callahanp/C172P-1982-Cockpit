@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/cases.scad>
+
+module cases()
+    layout([for(spec = cases) case_overall_size(spec).x],  1) let(spec = cases[$i])
+        case(spec);
+
+if($preview){
+    cases();}

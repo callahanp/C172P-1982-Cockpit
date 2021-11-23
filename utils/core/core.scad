@@ -17,5 +17,5 @@
 //
 // usage: 
 // include <core/core.scad>
-include <../../NopSCADlib/utils/core/core.scad>
-include </../global_defs.scad>
+include <../../../NopSCADlib/utils/core/core.scad>
+include <../../global_defs.scad>

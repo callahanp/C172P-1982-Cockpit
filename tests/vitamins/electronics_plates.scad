@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/electronics_plates.scad>
+
+module electronics_plates()
+    layout([for(spec = electronics_plates) electronics_plate_overall_size(spec).x],  1) let(spec = electronics_plates[$i])
+        electronics_plate(spec);
+
+if($preview){
+    electronics_plates();}

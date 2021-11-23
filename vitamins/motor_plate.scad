@@ -15,6 +15,24 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+function motor_plate_description(spec) = spec[0];
+function motor_plate_overall_size(spec) = spec[1];
+function motor_plate_nominal_size(spec) = spec[2]; 
+// TODO: Create new accessor functions for additional motor_plate specs
+function motor_plate_overall_size(spec) = spec[3];
+
+function motor_plate_constructor (
+  description, 
+  overall_size, nominal_size,
+  other_specifications) = 
+    [description, 
+    overall_size, nominal_size,
+    other_specifications];
+// TODO: Replace motor_plate_constructor "other_specifcations" with 
+//        real parameters for motor_plates
+module motor_plate (spec){
+// TODO: Replace cube construct with motor_plate part construction
+cube(motor_plate_overall_size(spec));
+
+}

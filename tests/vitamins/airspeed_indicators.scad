@@ -15,6 +15,19 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+//
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/airspeed_indicators.scad>
+
+
+module airspeed_indicators()
+    layout([for(airspeed_indicator = airspeed_indicators) airspeed_indicator_width(airspeed_indicator)], 3)
+      let (s=airspeed_indicators[$i]) {
+        echo (airspeed_indicator_width(s));
+        airspeed_indicator(s);
+      }
+
+if($preview)
+    airspeed_indicators();

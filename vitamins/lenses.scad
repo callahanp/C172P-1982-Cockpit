@@ -15,6 +15,10 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+include <../utils/core/core.scad>
+
+include <lens.scad>
+3_inch_lens = ["3_inch_lens", [3,3,3/64], 3, [3, 3/64]];
+2_inch_lens = ["2_inch_lens" , [2,2,3/64], 2, [2, 3/64]];
+lenses = [3_inch_lens, 2_inch_lens];

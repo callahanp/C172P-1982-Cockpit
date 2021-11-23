@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/connector_plates.scad>
+
+module connector_plates()
+    layout([for(spec = connector_plates) connector_plate_overall_size(spec).x],  1) let(spec = connector_plates[$i])
+        connector_plate(spec);
+
+if($preview){
+    connector_plates();}

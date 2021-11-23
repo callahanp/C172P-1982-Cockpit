@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+include <../../vitamins/lens_gaskets.scad>
+
+module lens_gaskets()
+    layout([for(spec = lens_gaskets) lens_gasket_overall_size(spec).x],  1) 
+        let(spec = lens_gaskets[$i])
+        lens_gasket(spec);
+
+if($preview){
+    lens_gaskets();}

@@ -1,0 +1,254 @@
+# Cockpit Project:
+  ## Flightgear Properties:
+    ### Configuration of a set of properties to be transmitted:
+    ### Configure Flightgear to send the property set at regular intervals:
+    ### Coordinate with server/client on CockpitPi:
+  ## CockpitPi:
+    ### Configure to receive packets of information from FlightGear:
+    ### Configure to decode and display information from FlightGear:
+    ### Configure to Calibrate attached cockpit hardware:
+  ## Arduino 7 Segment Driver:
+    ### Prototype:
+  ## Arduino Rheostat:
+    ### Prototype:
+  ## Arduino Rotary Encoder:
+    ### Prototype:
+  ## Arduino Magnetic Encoder:
+    ### Prototype:
+  ## Arduino Multiplexer:
+    ### Prototype:
+  ## Arduino/Mosfet Circuit Breaker:
+    ### Prototype:
+  ## Saitek Yoke BU386:
+    ### Prototype:
+  ## Saitek Pedals BU386:
+    ### Prototype:
+  ## Airspeed Indicator:
+
+    ### Fixed Plate:
+    ### Dial for Fixed Plate:
+    ### Motor:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Altimeter:
+    ### Gear Set:
+    ### Motor:
+    ### Motor Plate:
+    ### Calibration and Control Feedback:
+    ### Altitude Face:
+    ### Altitude Dial:
+    ### Barometer Face:
+    ### Barometer Dial:
+    ### Barometer Dial Feedback:
+    ### Needles:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Turn Coordinator:
+    ### Motor:
+    ### Face Plate:
+    ### Dial#:
+    ### Ball Mechanism:
+    ### Design Ball Movement:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Attitude Indicator:
+    ### Outer Rotation:
+    ### Outer Dial:
+    ### Fixed Plate:
+    ### Fixed Dial:
+    ### Pitch Plate:
+    ### Aircraft Needle:
+    ### Aircraft Needle Movement:
+    ### Aircraft Needle Sensor:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Heading Gryo:
+    ### Rotating Plate:
+    ### Dial for Rotating Plate:
+    ### Fixed Plate:
+    ### Dial for Fixed Plate:
+    ### Motor:
+    ### Feedback Sensors:
+    ### Adjusters:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Vertical Speed:
+    ### Fixed Plate:
+    ### Dial for Fixed Plate:
+    ### Motor:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Suction:
+    ### Fixed Plate:
+    ### Dial for Fixed Plate:
+    ### Motor:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## Tachometer:
+    ### Fixed Plate:
+    ### Dial for Fixed Plate:
+    ### Motor:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## EGT:
+    ### Fixed Plate:
+    ### Dial for Fixed Plate:
+    ### Meter & Needle:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## ADF:
+    ### Rotating Plate:
+    ### Dial for Rotating Plate:
+    ### Feedback for Rotation:
+    ### Motor:
+    ### Needle:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## GS/CDI:
+    ### Rotating Plate:
+    ### Dial for Rotating Plate:
+    ### Feedback for Rotation:
+    ### Meters:
+    ### Electronics Plate:
+    ### Connectors Plate:
+    ### Connectors:
+    ### Case:
+
+  ## KT76 Transponder:
+    ### Face Plate:
+    ### Switch Plate:
+    ### Knob:
+    ### Dial 0-7:
+    ### Main Switch:
+    ### Electronics Plate:
+    ### Connectors:
+    ### Case:
+  ## DME:
+    ### Face Plate:
+    ### Switch and Display Plate:
+    ### Knob:
+    ### Switch:
+    ### Display:
+    ### Electronics Plate:
+    ### Connectors:
+    ### Case:
+
+  ## KAP140 Autopilot:
+    ### Face Plate:
+    ### Switch and Display Plate:
+    ### Knob:
+    ### Switch:
+    ### Rotary Encoders:
+    ### Display:
+    ### Dual Rotary Encoders Plate:
+    ### Electronics Plate:
+    ### Connectors:
+    ### Case:
+  ## KR87 ADF:
+    ### Face Plate:
+    ### Switch and Display Plate:
+    ### Knobs:
+    ### Buttons:
+    ### Rotary Encoders:
+    ### Display:
+    ### Dual Rotary Encoders Plate:
+    ### Electronics Plate:
+    ### Connectors:
+    ### Case:
+  ## KX165 Nav/Comm:
+    ### Face Plate:
+    ### Switch and Display Plate:
+    ### Knobs:
+    ### Buttons:
+    ### Dual Rotary Encoders Plate:
+    ### Rotary Encoders:
+    ### Dual Rheostat with pull switches:
+    ### Display:
+
+    ### Electronics Plate:
+    ### Connectors:
+    ### Case:
+  ## KAP20 Audio Panel:
+    ### Face Plate:
+    ### Switch Plate:
+    ### Knobs:
+    ### Switch - Rotary:
+    ### Switch - Toggle:
+    ### LED:
+    ### A-O-M Light Filters:
+    ### Electronics Plate:
+    ### Connectors:
+    ### Case:
+  ## Lower Panel & Instrument Panels Support:
+    ### Primer:
+    ### Master Switch:
+    ### Starter Switch:
+    ### Avionics Circuit Breaker:
+    ### Circuit Breakers:
+    ### Light Switches:
+    ### Carb Heat:
+    ### Panel & Instrument Light Rheostats:
+    ### Alt-Static Pull:
+    ### Throttle:
+    ### Mixture Vernier:
+    ### Flaps:
+        #### Bezel:
+        #### Support:
+        #### Indicator Arm:
+        #### Motor:
+        #### Knob:
+        #### Actuator:
+        #### Cam:
+        #### Switches:
+        #### Axle:
+        #### Spring:
+    ### Cabin Air:
+    ### Cabin Heat:
+  ## Yoke:
+  ## Pedals:
+  ## Pilot Seat:
+  ## Co-Pilot Seat:
+  ## Passengers Seat:
+  ## Floor:
+  ## Firewall:
+  ## Console:
+    ### Fuel Selector:
+    ### Horizontal Trim:
+    ### Vertical Trim:
+  ##Fuselage:
+    ### Door Hinge:
+    ### Door Latch:
+    ### Door Catch:
+    
+    ### Sides:
+    ### Ceiling:

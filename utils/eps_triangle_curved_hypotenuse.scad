@@ -15,6 +15,11 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+//corner_rounded_triangle_die.scad
+include <core/core.scad>
+include <bezier_curve.scad>
+module eps_triangle_curved_hypotenuse( xyPath, tStep, path_closure, height, eps_size=[0,0,0]){
+  pathb=bezier_curve(tStep,xyPath);
+    linear_extrude (height=height+eps_size[2])
+      polygon(concat(pathb,path_closure));
+}

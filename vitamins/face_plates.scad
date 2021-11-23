@@ -15,6 +15,13 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+include <../utils/core/core.scad>
+
+include <face_plate.scad>
+// TODO: Update with parts representing actual face_plates
+//                       Manufacturer  Model            Part Number    Description  Bounding Cube  spec
+face_plate_123 =     ["1-2-3 Block", [1,2,3], 3, [1,2,3]];
+face_plate_10_10_10 = ["10 cube" , [10,10,10], 10, [10,10,10]];
+// TODO: Update face_plates list with new parts defined above
+face_plates = [face_plate_123, face_plate_123, face_plate_123, face_plate_10_10_10,face_plate_10_10_10];

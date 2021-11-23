@@ -15,6 +15,13 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+
+include <../utils/core/core.scad>
+
+include <motor_plate.scad>
+// TODO: Update with parts representing actual motor_plates
+//                       Manufacturer  Model            Part Number    Description  Bounding Cube  spec
+motor_plate_123 =     ["1-2-3 Block", [1,2,3], 3, [1,2,3]];
+motor_plate_10_10_10 = ["10 cube" , [10,10,10], 10, [10,10,10]];
+// TODO: Update motor_plates list with new parts defined above
+motor_plates = [motor_plate_123, motor_plate_123, motor_plate_123, motor_plate_10_10_10,motor_plate_10_10_10];

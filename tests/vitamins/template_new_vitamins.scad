@@ -15,6 +15,14 @@
 // You should have received a copy of the GNU General Public License along with CockpitSCADlib.
 // If not, see <https://www.gnu.org/licenses/>.
 //
-// usage: 
-// include <../../global_defs.scad>
-eps=1/128;
+include <../../utils/core/core.scad>
+use <../../utils/layout.scad>
+
+include <../../vitamins/new_vitamins_template.scad>
+// TO_DO: Make sure the new_vitamins test is run
+module new_vitamins()
+    layout([for(spec = new_vitamins) new_vitamin_overall_size(spec).x],  1) let(spec = new_vitamins[$i])
+        new_vitamin(spec);
+
+if($preview){
+    new_vitamins();}
